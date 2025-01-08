@@ -7,18 +7,24 @@ import {
     TeamOutlined,
     AppstoreAddOutlined,
 } from '@ant-design/icons';
+import { Link, Outlet } from 'react-router-dom';
 
 const { Header, Content, Footer, Sider } = Layout;
 
 const items = [
     {
         key: '1',
-        label: 'Dashboard',
+        label: <Link to="/dashboard">Dashboard</Link>,
         icon: <HomeOutlined />,
     },
     {
         key: '2',
-        label: 'Profile',
+        label: <Link to="/profile">Profile</Link>,
+        icon: <UserOutlined />,
+    },
+    {
+        key: '3',
+        label: <Link to="/about">About</Link>,
         icon: <UserOutlined />,
     },
     {
@@ -28,33 +34,33 @@ const items = [
         children: [
             {
                 key: '3-1',
-                label: 'Create Admin',
+                label: <Link to="/user-management/create-admin">Create Admin</Link>,
                 icon: <UserOutlined />,
             },
             {
                 key: '3-2',
-                label: 'Create Student',
+                label: <Link to="/user-management/create-student">Create Student</Link>,
                 icon: <TeamOutlined />,
             },
         ],
     },
     {
         key: '4',
-        label: 'Settings',
+        label: <Link to="/settings">Settings</Link>,
         icon: <SettingOutlined />,
     },
     {
         key: '5',
-        label: 'Applications',
+        label: <Link to="/applications">Applications</Link>,
         icon: <AppstoreAddOutlined />,
     },
 ];
 
 const MainLayout: React.FC = () => {
     const {
-        token: { colorBgContainer, borderRadiusLG }, 
+        token: { borderRadiusLG },
     } = theme.useToken();
- 
+
     return (
         <Layout style={{ height: '100vh' }}>
             <Sider
@@ -78,7 +84,7 @@ const MainLayout: React.FC = () => {
                         fontWeight: 'bold',
                     }}
                 >
-                    PH University
+                    PH Student
                 </div>
                 <Menu
                     theme="dark"
@@ -88,7 +94,7 @@ const MainLayout: React.FC = () => {
                 />
             </Sider>
             <Layout>
-                <Header style={{ background: colorBgContainer, textAlign: 'center' }}>
+                <Header style={{ color: 'white' }}>
                     <h1 style={{ margin: 0 }}>PH University</h1>
                 </Header>
                 <Content style={{ margin: '24px 16px 0' }}>
@@ -96,11 +102,11 @@ const MainLayout: React.FC = () => {
                         style={{
                             padding: 24,
                             minHeight: 360,
-                            background: colorBgContainer,
+
                             borderRadius: borderRadiusLG,
                         }}
                     >
-                        Main Layout Goes Here. Hello World 🌍🌍🌍
+                        <Outlet />
                     </div>
                 </Content>
                 <Footer style={{ textAlign: 'center' }}>
@@ -110,7 +116,5 @@ const MainLayout: React.FC = () => {
         </Layout>
     );
 };
-     
-export default MainLayout;
-   
 
+export default MainLayout;
