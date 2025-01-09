@@ -1,66 +1,15 @@
-import React from 'react';
-import { Layout, Menu, theme } from 'antd';
+import { Layout, Menu, MenuProps } from 'antd';
 import {
-    HomeOutlined,
+    UploadOutlined,
     UserOutlined,
-    SettingOutlined,
-    TeamOutlined,
-    AppstoreAddOutlined,
+    VideoCameraOutlined,
 } from '@ant-design/icons';
-import { Link, Outlet } from 'react-router-dom';
-
+import { createElement } from 'react';
+import { NavLink, Outlet } from 'react-router-dom';
+import { adminSidebarItems } from '../../routes/admin.routes';
 const { Header, Content, Footer, Sider } = Layout;
 
-const items = [
-    {
-        key: '1',
-        label: <Link to="/dashboard">Dashboard</Link>,
-        icon: <HomeOutlined />,
-    },
-    {
-        key: '2',
-        label: <Link to="/profile">Profile</Link>,
-        icon: <UserOutlined />,
-    },
-    {
-        key: '3',
-        label: <Link to="/about">About</Link>,
-        icon: <UserOutlined />,
-    },
-    {
-        key: '3',
-        label: 'User Management',
-        icon: <TeamOutlined />,
-        children: [
-            {
-                key: '3-1',
-                label: <Link to="/user-management/create-admin">Create Admin</Link>,
-                icon: <UserOutlined />,
-            },
-            {
-                key: '3-2',
-                label: <Link to="/user-management/create-student">Create Student</Link>,
-                icon: <TeamOutlined />,
-            },
-        ],
-    },
-    {
-        key: '4',
-        label: <Link to="/settings">Settings</Link>,
-        icon: <SettingOutlined />,
-    },
-    {
-        key: '5',
-        label: <Link to="/applications">Applications</Link>,
-        icon: <AppstoreAddOutlined />,
-    },
-];
-
-const MainLayout: React.FC = () => {
-    const {
-        token: { borderRadiusLG },
-    } = theme.useToken();
-
+const MainLayout = () => {
     return (
         <Layout style={{ height: '100vh' }}>
             <Sider
@@ -76,34 +25,29 @@ const MainLayout: React.FC = () => {
                 <div
                     style={{
                         color: 'white',
-                        height: '3.5rem',
+
+                        height: '4rem',
                         display: 'flex',
                         justifyContent: 'center',
                         alignItems: 'center',
-                        fontSize: '1.5rem',
-                        fontWeight: 'bold',
                     }}
                 >
-                    PH Student
+                    <h1>PH Uni</h1>
                 </div>
                 <Menu
                     theme="dark"
                     mode="inline"
-                    defaultSelectedKeys={['1']}
-                    items={items}
+                    defaultSelectedKeys={['4']}
+                    items={adminSidebarItems}
                 />
             </Sider>
             <Layout>
-                <Header style={{ color: 'white' }}>
-                    <h1 style={{ margin: 0 }}>PH University</h1>
-                </Header>
+                <Header style={{ padding: 0 }} />
                 <Content style={{ margin: '24px 16px 0' }}>
                     <div
                         style={{
                             padding: 24,
                             minHeight: 360,
-
-                            borderRadius: borderRadiusLG,
                         }}
                     >
                         <Outlet />
