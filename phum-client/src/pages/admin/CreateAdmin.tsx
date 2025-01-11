@@ -1,11 +1,9 @@
-import React from 'react';
-
 const CreateAdmin = () => {
-    return (
-        <div>
-            <h4>Create Admin</h4>
-        </div>
-    );
+  return (
+    <div>
+      <h1> This is CreateAdmin component </h1>
+    </div>
+  );
 };
 
 export default CreateAdmin;

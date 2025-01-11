@@ -1,8 +1,12 @@
-import React from 'react';
 import MainLayout from './components/layout/MainLayout';
+import ProtectedRoute from './components/layout/ProtectedRoute';
 
-const App = () => {
-  return <MainLayout />
-};
+function App() {
+  return (
+    <ProtectedRoute>
+      <MainLayout />
+    </ProtectedRoute>
+  );
+}
 
 export default App;
